@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+
+<html lang="id"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_stack" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;background-color:#f8f9ff;}body{overscroll-behavior:none;font-family:'Plus Jakarta Sans',sans-serif;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-background":"#0b1c30","surface-tint":"#3755c3","primary":"#00288e","on-tertiary-container":"#ffa39c","tertiary":"#70000c","on-error-container":"#93000a","tertiary-container":"#9b0015","surface-container":"#e5eeff","on-secondary-fixed-variant":"#005049","on-primary-fixed-variant":"#173bab","on-primary-container":"#a8b8ff","tertiary-fixed":"#ffdad7","on-secondary-fixed":"#00201d","surface-variant":"#d3e4fe","error":"#ba1a1a","inverse-on-surface":"#eaf1ff","outline-variant":"#c4c5d5","surface-container-low":"#eff4ff","on-primary":"#ffffff","inverse-primary":"#b8c4ff","secondary":"#006a61","on-tertiary":"#ffffff","on-secondary-container":"#006f66","secondary-container":"#86f2e4","on-secondary":"#ffffff","secondary-fixed-dim":"#6bd8cb","primary-fixed":"#dde1ff","on-error":"#ffffff","on-tertiary-fixed":"#410004","inverse-surface":"#213145","primary-container":"#1e40af","background":"#f8f9ff","on-primary-fixed":"#001453","primary-fixed-dim":"#b8c4ff","surface-container-highest":"#d3e4fe","surface-container-lowest":"#ffffff","surface-bright":"#f8f9ff","surface-container-high":"#dce9ff","on-surface-variant":"#444653","secondary-fixed":"#89f5e7","on-tertiary-fixed-variant":"#930013","on-surface":"#0b1c30","tertiary-fixed-dim":"#ffb3ad","error-container":"#ffdad6","surface":"#f8f9ff","surface-dim":"#cbdbf5","outline":"#757684"},borderRadius:{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},spacing:{"gutter-tablet":"1.5rem","space-lg":"1.5rem","margin":"1rem","space-sm":"0.5rem","margin-desktop":"3rem","space-xl":"2rem","space-md":"1rem","margin-tablet":"2rem","gutter":"1rem","space-xs":"0.25rem"},fontFamily:{"body-lg":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"currency-card":["Plus Jakarta Sans"],"headline-sm":["Plus Jakarta Sans"],"label-sm":["Plus Jakarta Sans"],"label-lg":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"display":["Plus Jakarta Sans"],"label-md":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"body-sm":["Plus Jakarta Sans"],"currency-display":["Plus Jakarta Sans"]},fontSize:{"body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}],"currency-card":["20px",{"lineHeight":"26px","letterSpacing":"-0.01em","fontWeight":"700"}],"headline-sm":["17px",{"lineHeight":"24px","fontWeight":"600"}],"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.04em","fontWeight":"700"}],"label-lg":["14px",{"lineHeight":"20px","letterSpacing":"0.01em","fontWeight":"600"}],"headline-md":["20px",{"lineHeight":"28px","letterSpacing":"-0.015em","fontWeight":"700"}],"display":["32px",{"lineHeight":"40px","letterSpacing":"-0.03em","fontWeight":"800"}],"label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.02em","fontWeight":"600"}],"headline-lg":["26px",{"lineHeight":"34px","letterSpacing":"-0.02em","fontWeight":"700"}],"body-sm":["12px",{"lineHeight":"18px","fontWeight":"400"}],"currency-display":["28px",{"lineHeight":"36px","letterSpacing":"-0.02em","fontWeight":"800"}]}}}};</script></head><body class="bg-surface text-on-surface flex flex-col min-h-screen"><header class="fixed top-0 inset-x-0 z-50 bg-surface/85 backdrop-blur-xl pt-safe shadow-[0_1px_8px_rgba(11,28,48,0.04)]"><div class="h-16 px-margin flex items-center justify-between"><div class="flex items-center gap-space-xs"><button aria-label="Kembali" class="w-11 h-11 flex items-center justify-center -ml-2 rounded-full text-on-surface hover:text-primary transition-colors" onclick="history.back()"><span class="material-symbols-outlined text-[24px]">arrow_back</span></button><div class="flex items-center gap-space-xs"><img alt="KaryaPay Logo" class="h-6 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1VFpaS_FdNd9OUMS63ru6_tVfG68JSKe4pLNOTZx6E5AYZQ52yLUvFxDlrhPStb2etl8m6PqbmtLVrTiZorQ-UtxWDqZXz3Ipf-SK8r_6o_16Gh7swnu4xKafHM7vU8OzsLBFjpHqyjNlARrkWClKi-Emy1zF0d35Z2wPaamPq17Ut0ErE6DxLWGc-mc0HDmUqNfxUkfMAO5WdvdYuMibhIwgLwEZ_0qe7ZK4vghrGI0PoxAfC-Ebm0gsM"/><h1 class="font-headline-sm text-headline-sm text-on-surface truncate max-w-[200px]">Buat Dokumen</h1></div></div><div class="flex items-center"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgRuHtd6w4z8Hy5D8iEOdGSbuO4iBKBBm_rNqEcaVBI1dRYF8ZjfuLHVrRmEw8zf7Yk3bNAJL3LaDJUWz2RnA2yojTpKePswykpIh6kLv_CbwSyInsJm7KHPUVuxlVz4nhECsJ14y7NmZOpoBNFW9uaqfRZTSdCpabjXty3UGj6FIEuCOK2NgwUfHkBNcLCYBiiWb8tO9W7MYy1oV2_rjoHPQOPfT44nxHpPQgBseGGcbKEpHD7xLp"/></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-safe bg-surface"><div class="flex flex-col w-full px-margin pb-36 space-y-space-md">
+<!-- Top Utility Bar: Actions -->
+<div class="flex items-center justify-between pt-space-xs">
+<button class="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-surface-container text-on-surface hover:bg-surface-container-high transition-transform active:scale-95" type="button">
+<span class="material-symbols-outlined text-[18px]">close</span>
+<span class="font-label-md text-label-md">Batal</span>
+</button>
+<div class="flex items-center gap-space-xs">
+<button class="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-surface-container-lowest text-primary shadow-sm hover:bg-surface-container-low transition-transform active:scale-95" type="button">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">bookmark</span>
+<span class="font-label-md text-label-md">Simpan Draft</span>
+</button>
+</div>
+</div>
+<!-- Document Type Selector (Segmented Pill) -->
+<div class="w-full bg-surface-container-high p-1.5 rounded-2xl flex items-center shadow-inner">
+<button class="flex-1 py-2.5 rounded-xl font-label-lg text-label-lg transition-all flex items-center justify-center gap-2 bg-surface-container-lowest text-primary shadow-sm font-semibold" id="docTypeInvoice" onclick="setDocType('invoice')" type="button">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">receipt_long</span>
+      Invoice Tagihan
+    </button>
+<button class="flex-1 py-2.5 rounded-xl font-label-lg text-label-lg transition-all flex items-center justify-center gap-2 text-on-surface-variant hover:text-on-surface" id="docTypeQuote" onclick="setDocType('quote')" type="button">
+<span class="material-symbols-outlined text-[18px]">request_quote</span>
+      Surat Penawaran
+    </button>
+</div>
+<!-- Section: Informasi Dasar -->
+<div class="w-full bg-surface-container-lowest rounded-2xl p-space-md shadow-sm space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">badge</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Informasi Dasar</h2>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-surface-container-low text-primary font-label-sm text-label-sm tracking-wider uppercase">Auto-Generated</span>
+</div>
+<!-- Client Selection -->
+<div class="space-y-1.5">
+<label class="font-label-md text-label-md text-on-surface-variant flex items-center justify-between">
+<span>Klien / Penerima Tagihan</span>
+<span class="text-error font-body-sm">*Wajib</span>
+</label>
+<div class="relative">
+<button class="w-full h-12 px-3.5 bg-surface-container-low hover:bg-surface-container rounded-xl flex items-center justify-between text-left transition-colors" id="clientSelectorBtn" onclick="toggleClientModal()" type="button">
+<div class="flex items-center gap-3 min-w-0">
+<div class="w-7 h-7 rounded-lg bg-primary-fixed flex items-center justify-center text-primary text-xs font-bold shrink-0">
+              PT
+            </div>
+<div class="truncate">
+<span class="font-label-lg text-label-lg text-on-surface font-semibold block truncate" id="selectedClientText">PT Digital Solusi Prima</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block truncate">billing@digitalsolusi.id</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant shrink-0 ml-2">unfold_more</span>
+</button>
+</div>
+</div>
+<!-- Document Number & Issue Dates Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm pt-1">
+<!-- Nomor Dokumen -->
+<div class="space-y-1.5">
+<label class="font-label-md text-label-md text-on-surface-variant">Nomor Dokumen</label>
+<div class="h-12 px-3.5 bg-surface-container-low rounded-xl flex items-center justify-between">
+<span class="font-label-lg text-label-lg text-on-surface font-bold tracking-wide" id="docNumberBadge">INV-2024-046</span>
+<span class="material-symbols-outlined text-[18px] text-secondary">lock</span>
+</div>
+</div>
+<!-- Tanggal Terbit & Jatuh Tempo -->
+<div class="grid grid-cols-2 gap-2">
+<div class="space-y-1.5">
+<label class="font-label-md text-label-md text-on-surface-variant">Tgl Terbit</label>
+<div class="h-12 px-2.5 bg-surface-container-low rounded-xl flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">26 Okt 2024</span>
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">calendar_today</span>
+</div>
+</div>
+<div class="space-y-1.5">
+<label class="font-label-md text-label-md text-on-surface-variant">Jatuh Tempo</label>
+<div class="h-12 px-2.5 bg-surface-variant/40 rounded-xl flex items-center justify-between">
+<div class="truncate">
+<span class="font-label-sm text-label-sm text-on-surface font-semibold block truncate">9 Nov 2024</span>
+<span class="text-[10px] text-secondary font-semibold block leading-none">14 Hari</span>
+</div>
+<span class="material-symbols-outlined text-[16px] text-primary">event_available</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Section: Rincian Pekerjaan / Jasa (Line Items) -->
+<div class="w-full space-y-space-sm">
+<div class="flex items-center justify-between px-1">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">format_list_bulleted</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Rincian Jasa &amp; Proyek</h2>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-container font-label-sm text-label-sm text-primary font-bold">2 Item</span>
+</div>
+<!-- Line Item Card 1 -->
+<div class="w-full bg-surface-container-lowest rounded-2xl p-space-md shadow-sm relative overflow-hidden transition-all hover:shadow-md">
+<div class="flex items-start justify-between gap-2">
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-2 mb-1">
+<span class="w-5 h-5 rounded-md bg-primary-container text-on-primary flex items-center justify-center text-[10px] font-bold">1</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Desain &amp; Prototype</span>
+</div>
+<h3 class="font-label-lg text-label-lg text-on-surface font-bold leading-snug">Redesign UI/UX Mobile App - Sprint 1 &amp; 2</h3>
+</div>
+<button aria-label="Hapus item" class="w-9 h-9 rounded-lg bg-surface-container-low text-error hover:bg-error-container flex items-center justify-center transition-transform active:scale-95" type="button">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+<div class="mt-3 pt-3 bg-surface-container-low/60 rounded-xl p-3 grid grid-cols-3 gap-2 items-center">
+<div>
+<span class="font-body-sm text-body-sm text-on-surface-variant block">Kuantitas</span>
+<span class="font-label-lg text-label-lg text-on-surface font-bold">1 Paket</span>
+</div>
+<div>
+<span class="font-body-sm text-body-sm text-on-surface-variant block">Harga Satuan</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">Rp 6.500.000</span>
+</div>
+<div class="text-right">
+<span class="font-body-sm text-body-sm text-on-surface-variant block">Subtotal</span>
+<span class="font-label-lg text-label-lg text-primary font-bold">Rp 6.500.000</span>
+</div>
+</div>
+</div>
+<!-- Line Item Card 2 -->
+<div class="w-full bg-surface-container-lowest rounded-2xl p-space-md shadow-sm relative overflow-hidden transition-all hover:shadow-md">
+<div class="flex items-start justify-between gap-2">
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-2 mb-1">
+<span class="w-5 h-5 rounded-md bg-primary-container text-on-primary flex items-center justify-center text-[10px] font-bold">2</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Frontend Code</span>
+</div>
+<h3 class="font-label-lg text-label-lg text-on-surface font-bold leading-snug">Slicing Frontend Tailwind &amp; Responsive Screen</h3>
+</div>
+<button aria-label="Hapus item" class="w-9 h-9 rounded-lg bg-surface-container-low text-error hover:bg-error-container flex items-center justify-center transition-transform active:scale-95" type="button">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+<div class="mt-3 pt-3 bg-surface-container-low/60 rounded-xl p-3 grid grid-cols-3 gap-2 items-center">
+<div>
+<span class="font-body-sm text-body-sm text-on-surface-variant block">Kuantitas</span>
+<span class="font-label-lg text-label-lg text-on-surface font-bold">20 Jam</span>
+</div>
+<div>
+<span class="font-body-sm text-body-sm text-on-surface-variant block">Harga / Jam</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">Rp 150.000</span>
+</div>
+<div class="text-right">
+<span class="font-body-sm text-body-sm text-on-surface-variant block">Subtotal</span>
+<span class="font-label-lg text-label-lg text-primary font-bold">Rp 3.000.000</span>
+</div>
+</div>
+</div>
+<!-- Add Item Button -->
+<button class="w-full h-12 rounded-2xl bg-surface-container-lowest text-primary hover:bg-surface-container-low font-label-lg text-label-lg font-bold flex items-center justify-center gap-2 shadow-sm transition-transform active:scale-98" onclick="triggerAddItemFeedback(this)" type="button">
+<span class="material-symbols-outlined text-[20px]">add_circle</span>
+<span>Tambah Item Pekerjaan</span>
+</button>
+</div>
+<!-- FITUR KHUSUS PPN: Card Interaktif Pajak Pertambahan Nilai -->
+<div class="w-full bg-surface-container-lowest rounded-2xl p-space-md shadow-sm space-y-3.5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2.5">
+<div class="w-9 h-9 rounded-xl bg-secondary-container text-on-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">percent</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Pajak Pertambahan Nilai (PPN)</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Sesuai ketentuan perpajakan resmi</p>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-bold">Resmi</span>
+</div>
+<!-- Toggle Selector Segmented Control -->
+<div class="w-full bg-surface-container-low p-1 rounded-xl flex items-center">
+<button class="flex-1 py-2 rounded-lg font-label-md text-label-md transition-all text-on-surface-variant font-medium" id="ppnToggleOff" onclick="setTaxState(false)" type="button">
+        Nonaktifkan PPN
+      </button>
+<button class="flex-1 py-2 rounded-lg font-label-md text-label-md transition-all bg-surface-container-lowest text-secondary font-bold shadow-sm flex items-center justify-center gap-1.5" id="ppnToggleOn" onclick="setTaxState(true)" type="button">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+        Aktifkan PPN (Default 11%)
+      </button>
+</div>
+<!-- Active State Information & Real-time Calculation Panel -->
+<div class="p-3.5 rounded-xl bg-surface-container transition-all space-y-2.5" id="ppnActiveDetails">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<label class="font-label-md text-label-md text-on-surface font-semibold" for="ppnPercentInput">Tarif PPN:</label>
+<div class="relative inline-flex items-center">
+<input class="w-16 h-8 text-center font-label-lg text-label-lg font-bold text-primary bg-surface-container-lowest rounded-lg shadow-inner focus:outline-none focus:bg-surface-bright" id="ppnPercentInput" oninput="calculateTaxes()" type="number" value="11"/>
+<span class="ml-1 font-label-md text-label-md text-on-surface-variant font-bold">%</span>
+</div>
+</div>
+<div class="text-right">
+<span class="font-body-sm text-body-sm text-on-surface-variant block">Kalkulasi Pajak</span>
+<span class="font-label-lg text-label-lg text-secondary font-bold" id="calculatedTaxBadge">Rp 1.045.000</span>
+</div>
+</div>
+<div class="flex items-start gap-2 pt-1">
+<span class="material-symbols-outlined text-[16px] text-secondary shrink-0 mt-0.5">info</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-tight">
+          PPN <span id="currentPpnRateText">11%</span> akan otomatis dicantumkan pada rincian tagihan klien resmi.
+        </p>
+</div>
+</div>
+</div>
+<!-- Sticky Bottom Summary Bar & Primary Action -->
+<div class="fixed bottom-0 inset-x-0 z-40 bg-surface-container-lowest/95 backdrop-blur-xl px-margin pt-3 pb-safe shadow-[0_-8px_24px_rgba(11,28,48,0.08)]">
+<div class="max-w-md mx-auto space-y-2.5">
+<!-- Breakdown Summary Accordion / Pill Strip -->
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm px-1">
+<div class="flex items-center gap-1.5">
+<span>Subtotal:</span>
+<span class="font-bold text-on-surface">Rp 9.500.000</span>
+</div>
+<div class="flex items-center gap-1.5 text-secondary" id="summaryTaxRow">
+<span>PPN (<span id="summaryPpnRate">11%</span>):</span>
+<span class="font-bold" id="summaryPpnValue">Rp 1.045.000</span>
+</div>
+</div>
+<!-- Main Total & Huge CTA -->
+<div class="flex items-center justify-between pt-0.5">
+<div class="leading-none">
+<span class="font-label-sm text-label-sm text-on-surface-variant block uppercase tracking-wider mb-0.5">Total Akhir Tagihan</span>
+<span class="font-headline-lg text-headline-lg text-primary tracking-tight font-extrabold" id="grandTotalDisplay">
+            Rp 10.545.000
+          </span>
+</div>
+</div>
+<!-- Shiny Prominent Button with Thumb-friendly size -->
+<button class="w-full h-13 py-3.5 px-6 rounded-2xl bg-primary-container text-on-primary font-headline-sm text-headline-sm font-bold flex items-center justify-center gap-2 shadow-[0_8px_20px_-4px_rgba(30,64,175,0.45)] hover:bg-primary transition-all active:scale-[0.98] relative overflow-hidden group" onclick="dispatchInvoicePreview()" type="button">
+<span class="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12 -translate-x-full group-hover:translate-x-[300%] transition-transform duration-1000 ease-out"></span>
+<span>Lanjut ke Pratinjau &amp; Kirim</span>
+<span class="text-xl">🚀</span>
+</button>
+</div>
+</div>
+<!-- Interactive Client Selector Modal Sheet (Hidden by default) -->
+<div class="fixed inset-0 bg-on-background/40 backdrop-blur-xs z-50 hidden transition-opacity flex items-end" id="clientModalBackdrop">
+<div class="w-full bg-surface-container-lowest rounded-t-3xl p-margin space-y-space-md shadow-2xl max-h-[85vh] overflow-y-auto pb-safe">
+<div class="w-12 h-1.5 bg-surface-container-highest rounded-full mx-auto"></div>
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Pilih Klien</h3>
+<button aria-label="Tutup modal" class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant" onclick="toggleClientModal()" type="button">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<!-- Quick Add New Client Action -->
+<button class="w-full h-12 rounded-xl bg-surface-container-low text-primary hover:bg-surface-container font-label-lg text-label-lg font-bold flex items-center justify-center gap-2 transition-transform active:scale-98" onclick="addNewClientTrigger()" type="button">
+<span class="material-symbols-outlined text-[20px]">person_add</span>
+        + Tambah Klien Baru
+      </button>
+<!-- Client List -->
+<div class="space-y-2">
+<button class="w-full p-3 rounded-xl bg-surface-container-low hover:bg-surface-variant flex items-center justify-between text-left transition-colors" onclick="selectClient('PT Digital Solusi Prima', 'INV-2024-046')" type="button">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-primary-container text-on-primary font-bold flex items-center justify-center text-sm">
+              DSP
+            </div>
+<div>
+<span class="font-label-lg text-label-lg text-on-surface font-bold block">PT Digital Solusi Prima</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Jakarta Selatan • Industri IT</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary text-[22px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</button>
+<button class="w-full p-3 rounded-xl bg-surface-bright hover:bg-surface-variant flex items-center justify-between text-left transition-colors" onclick="selectClient('Studio Kreatif Kopi', 'INV-2024-047')" type="button">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-secondary-container text-on-secondary-container font-bold flex items-center justify-center text-sm">
+              SKK
+            </div>
+<div>
+<span class="font-label-lg text-label-lg text-on-surface font-bold block">Studio Kreatif Kopi</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Bandung • F&amp;B / Roastery</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant text-[22px]">radio_button_unchecked</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<script>
+  let isTaxActive = true;
+  const subtotalAmount = 9500000;
+
+  function setDocType(type) {
+    const invoiceBtn = document.getElementById('docTypeInvoice');
+    const quoteBtn = document.getElementById('docTypeQuote');
+    const docNumber = document.getElementById('docNumberBadge');
+
+    if (type === 'invoice') {
+      invoiceBtn.className = "flex-1 py-2.5 rounded-xl font-label-lg text-label-lg transition-all flex items-center justify-center gap-2 bg-surface-container-lowest text-primary shadow-sm font-semibold";
+      quoteBtn.className = "flex-1 py-2.5 rounded-xl font-label-lg text-label-lg transition-all flex items-center justify-center gap-2 text-on-surface-variant hover:text-on-surface";
+      docNumber.textContent = 'INV-2024-046';
+    } else {
+      quoteBtn.className = "flex-1 py-2.5 rounded-xl font-label-lg text-label-lg transition-all flex items-center justify-center gap-2 bg-surface-container-lowest text-primary shadow-sm font-semibold";
+      invoiceBtn.className = "flex-1 py-2.5 rounded-xl font-label-lg text-label-lg transition-all flex items-center justify-center gap-2 text-on-surface-variant hover:text-on-surface";
+      docNumber.textContent = 'QUO-2024-046';
+    }
+  }
+
+  function setTaxState(active) {
+    isTaxActive = active;
+    const btnOn = document.getElementById('ppnToggleOn');
+    const btnOff = document.getElementById('ppnToggleOff');
+    const panel = document.getElementById('ppnActiveDetails');
+    const summaryTaxRow = document.getElementById('summaryTaxRow');
+
+    if (active) {
+      btnOn.className = "flex-1 py-2 rounded-lg font-label-md text-label-md transition-all bg-surface-container-lowest text-secondary font-bold shadow-sm flex items-center justify-center gap-1.5";
+      btnOff.className = "flex-1 py-2 rounded-lg font-label-md text-label-md transition-all text-on-surface-variant font-medium";
+      panel.classList.remove('opacity-40', 'pointer-events-none');
+      summaryTaxRow.classList.remove('hidden');
+    } else {
+      btnOff.className = "flex-1 py-2 rounded-lg font-label-md text-label-md transition-all bg-surface-container-lowest text-on-surface font-bold shadow-sm";
+      btnOn.className = "flex-1 py-2 rounded-lg font-label-md text-label-md transition-all text-on-surface-variant font-medium";
+      panel.classList.add('opacity-40', 'pointer-events-none');
+      summaryTaxRow.classList.add('hidden');
+    }
+    calculateTaxes();
+  }
+
+  function calculateTaxes() {
+    const percentInput = document.getElementById('ppnPercentInput');
+    let rate = parseFloat(percentInput.value) || 0;
+    if (rate < 0) rate = 0;
+
+    document.getElementById('currentPpnRateText').textContent = rate + '%';
+    document.getElementById('summaryPpnRate').textContent = rate + '%';
+
+    const taxAmount = isTaxActive ? Math.round(subtotalAmount * (rate / 100)) : 0;
+    const grandTotal = subtotalAmount + taxAmount;
+
+    const formattedTax = 'Rp ' + taxAmount.toLocaleString('id-ID');
+    const formattedTotal = 'Rp ' + grandTotal.toLocaleString('id-ID');
+
+    document.getElementById('calculatedTaxBadge').textContent = formattedTax;
+    document.getElementById('summaryPpnValue').textContent = formattedTax;
+    document.getElementById('grandTotalDisplay').textContent = formattedTotal;
+  }
+
+  function toggleClientModal() {
+    const modal = document.getElementById('clientModalBackdrop');
+    modal.classList.toggle('hidden');
+  }
+
+  function selectClient(name, docNum) {
+    document.getElementById('selectedClientText').textContent = name;
+    toggleClientModal();
+  }
+
+  function addNewClientTrigger() {
+    toggleClientModal();
+    alert('Buka dialog Tambah Klien Baru...');
+  }
+
+  function triggerAddItemFeedback(btn) {
+    btn.classList.add('bg-primary-fixed');
+    setTimeout(() => {
+      btn.classList.remove('bg-primary-fixed');
+    }, 200);
+  }
+
+  function dispatchInvoicePreview() {
+    const total = document.getElementById('grandTotalDisplay').textContent.trim();
+    alert('Mempersiapkan pratinjau dokumen dengan total ' + total + '...');
+  }
+</script></main></body></html>

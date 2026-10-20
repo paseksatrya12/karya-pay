@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+
+<html lang="id"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;background-color:#f8f9ff;}body{overscroll-behavior:none;font-family:'Plus Jakarta Sans',sans-serif;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-background":"#0b1c30","surface-tint":"#3755c3","primary":"#00288e","on-tertiary-container":"#ffa39c","tertiary":"#70000c","on-error-container":"#93000a","tertiary-container":"#9b0015","surface-container":"#e5eeff","on-secondary-fixed-variant":"#005049","on-primary-fixed-variant":"#173bab","on-primary-container":"#a8b8ff","tertiary-fixed":"#ffdad7","on-secondary-fixed":"#00201d","surface-variant":"#d3e4fe","error":"#ba1a1a","inverse-on-surface":"#eaf1ff","outline-variant":"#c4c5d5","surface-container-low":"#eff4ff","on-primary":"#ffffff","inverse-primary":"#b8c4ff","secondary":"#006a61","on-tertiary":"#ffffff","on-secondary-container":"#006f66","secondary-container":"#86f2e4","on-secondary":"#ffffff","secondary-fixed-dim":"#6bd8cb","primary-fixed":"#dde1ff","on-error":"#ffffff","on-tertiary-fixed":"#410004","inverse-surface":"#213145","primary-container":"#1e40af","background":"#f8f9ff","on-primary-fixed":"#001453","primary-fixed-dim":"#b8c4ff","surface-container-highest":"#d3e4fe","surface-container-lowest":"#ffffff","surface-bright":"#f8f9ff","surface-container-high":"#dce9ff","on-surface-variant":"#444653","secondary-fixed":"#89f5e7","on-tertiary-fixed-variant":"#930013","on-surface":"#0b1c30","tertiary-fixed-dim":"#ffb3ad","error-container":"#ffdad6","surface":"#f8f9ff","surface-dim":"#cbdbf5","outline":"#757684"},borderRadius:{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},spacing:{"gutter-tablet":"1.5rem","space-lg":"1.5rem","margin":"1rem","space-sm":"0.5rem","margin-desktop":"3rem","space-xl":"2rem","space-md":"1rem","margin-tablet":"2rem","gutter":"1rem","space-xs":"0.25rem"},fontFamily:{"body-lg":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"currency-card":["Plus Jakarta Sans"],"headline-sm":["Plus Jakarta Sans"],"label-sm":["Plus Jakarta Sans"],"label-lg":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"display":["Plus Jakarta Sans"],"label-md":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"body-sm":["Plus Jakarta Sans"],"currency-display":["Plus Jakarta Sans"]},fontSize:{"body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}],"currency-card":["20px",{"lineHeight":"26px","letterSpacing":"-0.01em","fontWeight":"700"}],"headline-sm":["17px",{"lineHeight":"24px","fontWeight":"600"}],"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.04em","fontWeight":"700"}],"label-lg":["14px",{"lineHeight":"20px","letterSpacing":"0.01em","fontWeight":"600"}],"headline-md":["20px",{"lineHeight":"28px","letterSpacing":"-0.015em","fontWeight":"700"}],"display":["32px",{"lineHeight":"40px","letterSpacing":"-0.03em","fontWeight":"800"}],"label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.02em","fontWeight":"600"}],"headline-lg":["26px",{"lineHeight":"34px","letterSpacing":"-0.02em","fontWeight":"700"}],"body-sm":["12px",{"lineHeight":"18px","fontWeight":"400"}],"currency-display":["28px",{"lineHeight":"36px","letterSpacing":"-0.02em","fontWeight":"800"}]}}}};</script></head><body class="bg-surface text-on-surface flex flex-col min-h-screen"><header class="fixed top-0 inset-x-0 z-50 bg-surface/85 backdrop-blur-xl pt-safe shadow-[0_1px_8px_rgba(11,28,48,0.04)]"><div class="h-16 px-margin flex items-center justify-between"><div class="flex items-center gap-space-sm"><img alt="KaryaPay Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1VFpaS_FdNd9OUMS63ru6_tVfG68JSKe4pLNOTZx6E5AYZQ52yLUvFxDlrhPStb2etl8m6PqbmtLVrTiZorQ-UtxWDqZXz3Ipf-SK8r_6o_16Gh7swnu4xKafHM7vU8OzsLBFjpHqyjNlARrkWClKi-Emy1zF0d35Z2wPaamPq17Ut0ErE6DxLWGc-mc0HDmUqNfxUkfMAO5WdvdYuMibhIwgLwEZ_0qe7ZK4vghrGI0PoxAfC-Ebm0gsM"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm tracking-tight text-primary font-bold">KaryaPay</span><span class="font-label-sm text-label-sm text-on-surface-variant leading-none hidden">Klien</span></div></div><div class="flex items-center gap-space-xs"><button aria-label="Notifikasi" class="w-11 h-11 flex items-center justify-center rounded-full text-on-surface-variant hover:text-primary relative transition-colors"><span class="material-symbols-outlined text-[24px]">notifications</span><span class="absolute top-2.5 right-2.5 w-2 h-2 rounded-full bg-secondary ring-2 ring-surface"></span></button><div class="w-11 h-11 flex items-center justify-center"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgRuHtd6w4z8Hy5D8iEOdGSbuO4iBKBBm_rNqEcaVBI1dRYF8ZjfuLHVrRmEw8zf7Yk3bNAJL3LaDJUWz2RnA2yojTpKePswykpIh6kLv_CbwSyInsJm7KHPUVuxlVz4nhECsJ14y7NmZOpoBNFW9uaqfRZTSdCpabjXty3UGj6FIEuCOK2NgwUfHkBNcLCYBiiWb8tO9W7MYy1oV2_rjoHPQOPfT44nxHpPQgBseGGcbKEpHD7xLp"/></div></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-28 bg-surface"><div class="flex flex-col w-full">
+<div class="px-margin pt-space-md pb-space-xs flex items-center justify-between">
+<div class="flex flex-col">
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight font-bold">Klien Saya</h1>
+<div class="flex items-center gap-space-xs mt-0.5">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-label-md text-label-md text-on-surface-variant font-semibold">24 Klien Aktif</span>
+<span class="font-body-sm text-body-sm text-outline-variant">•</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Update terkini</span>
+</div>
+</div>
+<button class="h-10 px-space-md bg-primary-container text-on-primary rounded-xl font-label-lg text-label-lg flex items-center gap-1.5 shadow-sm active:scale-95 transition-all" id="btn-tambah-top">
+<span class="material-symbols-outlined text-[18px]">person_add</span>
+<span>+ Klien</span>
+</button>
+</div>
+<div class="px-margin mt-space-sm flex flex-col gap-space-sm">
+<div class="relative w-full">
+<div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="w-full h-12 pl-10 pr-10 bg-surface-container-lowest text-on-surface font-body-md text-body-md rounded-xl shadow-sm focus:outline-none focus:ring-0 focus:shadow-md transition-all placeholder:text-outline" id="client-search" placeholder="Cari nama klien, PIC, atau perusahaan..." type="text"/>
+<button class="hidden absolute inset-y-0 right-0 pr-3.5 flex items-center text-outline hover:text-on-surface" id="clear-search">
+<span class="material-symbols-outlined text-[18px]">cancel</span>
+</button>
+</div>
+<div class="flex items-center gap-2 overflow-x-auto pb-1 -mx-margin px-margin scrollbar-none" id="filter-container">
+<button class="filter-chip active flex-shrink-0 px-3.5 py-1.5 rounded-full font-label-md text-label-md bg-primary text-on-primary shadow-sm transition-all" data-filter="all">
+        Semua (24)
+      </button>
+<button class="filter-chip flex-shrink-0 px-3.5 py-1.5 rounded-full font-label-md text-label-md bg-surface-container-high text-on-surface-variant hover:text-primary transition-all" data-filter="aktif">
+        Klien Aktif (18)
+      </button>
+<button class="filter-chip flex-shrink-0 px-3.5 py-1.5 rounded-full font-label-md text-label-md bg-surface-container-high text-on-surface-variant hover:text-primary transition-all" data-filter="vip">
+        ⭐ Klien VIP (4)
+      </button>
+<button class="filter-chip flex-shrink-0 px-3.5 py-1.5 rounded-full font-label-md text-label-md bg-surface-container-high text-on-surface-variant hover:text-primary transition-all" data-filter="prospek">
+        Prospek (2)
+      </button>
+</div>
+</div>
+<div class="px-margin mt-space-md flex flex-col gap-space-md pb-6" id="client-list">
+<div class="client-card bg-surface-container-lowest rounded-xl p-space-md shadow-sm transition-all duration-200 relative overflow-hidden" data-category="vip aktif" data-name="PT Digital Solusi Prima Budi Santoso">
+<div class="absolute top-0 right-0 w-28 h-28 bg-primary/5 rounded-bl-full pointer-events-none"></div>
+<div class="flex items-start justify-between gap-space-sm mb-3">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="relative w-12 h-12 rounded-xl bg-surface-container-highest overflow-hidden flex-shrink-0 flex items-center justify-center">
+<img class="w-full h-full object-cover" data-alt="Headshot of Indonesian corporate executive Budi Santoso wearing modern navy formal blazer in brightly lit glass office studio high end portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuHgvNUWNjsn2w0RhZbAX2fIevmLp3p13BpvLzfxpMtBAoFxPNzNKqlCGyvz30qT5BHJ9nGTEuJ0-38PSlz1w_1gGD6JzAbZakZzsX-F3Yyhl3TfNJfXPE-t2ltn4zV9jG32wA7Hvr5yAC6nA04vd2Kve2XhbtclxI59rI8sddtcXjuXXQuIF09-H8-yAU3ALxKQK8Rneci0SDCJ7kD_rUCoxPX9gUi-qa8zWonaUv83RMJd7PMD6n"/>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1.5 flex-wrap">
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold truncate">PT Digital Solusi Prima</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">PIC: Budi Santoso (Direktur Ops)</span>
+</div>
+</div>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full font-label-sm text-label-sm bg-primary-fixed text-on-primary-fixed font-bold tracking-wide flex-shrink-0">
+          VIP KORPORAT
+        </span>
+</div>
+<div class="grid grid-cols-2 gap-space-xs mb-3.5 p-space-sm rounded-lg bg-surface-container-low">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Total Transaksi</span>
+<span class="font-label-lg text-label-lg text-on-surface font-bold mt-0.5">Rp 45.200.000</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">6 Invoice Tervalidasi</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Tagihan Berjalan</span>
+<span class="font-label-lg text-label-lg text-primary font-bold mt-0.5">Rp 10.545.000</span>
+<span class="font-body-sm text-body-sm text-secondary font-semibold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> 1 Invoice Aktif
+          </span>
+</div>
+</div>
+<div class="flex items-center gap-2 pt-1">
+<a class="flex-1 h-11 bg-secondary text-on-secondary rounded-xl font-label-md text-label-md flex items-center justify-center gap-1.5 active:scale-95 transition-all shadow-sm" href="https://wa.me/6281234567890?text=Halo%20Pak%20Budi%20dari%20PT%20Digital%20Solusi%20Prima">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+<span>WhatsApp</span>
+</a>
+<a aria-label="Telepon Budi Santoso" class="w-11 h-11 bg-surface-container-high text-on-surface rounded-xl flex items-center justify-center active:scale-95 transition-all flex-shrink-0" href="tel:081234567890">
+<span class="material-symbols-outlined text-[20px]">call</span>
+</a>
+<button class="flex-1 h-11 bg-primary text-on-primary rounded-xl font-label-md text-label-md flex items-center justify-center gap-1.5 active:scale-95 transition-all shadow-sm">
+<span class="material-symbols-outlined text-[18px]">receipt_long</span>
+<span>Buat Invoice</span>
+</button>
+</div>
+</div>
+<div class="client-card bg-surface-container-lowest rounded-xl p-space-md shadow-sm transition-all duration-200 relative overflow-hidden" data-category="aktif" data-name="Studio Kreatif Kopi Maya Anggraini">
+<div class="flex items-start justify-between gap-space-sm mb-3">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="relative w-12 h-12 rounded-xl bg-surface-container-highest overflow-hidden flex-shrink-0 flex items-center justify-center">
+<img class="w-full h-full object-cover" data-alt="Portrait of young Indonesian creative marketing lead woman Maya Anggraini smiling warmly with contemporary warm coffee shop bokeh background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCwC-syiCLxt-5H-KFcuGbfSfmhBZ8TB42JpQYdNSHkFIzV6--IX7XUUvIlPj9zRVTdFnBT0Cmtjl-hxVktPaCf38SFQHH9dIMayrbvEmpnOsX2m-nzRfQpjiP5DycC98AUjpRbHnltewf32gPM0twhOJnweppE3Vnwu2LLIaGlpV3B8HKETYFiGH4HIdKHboiLOlDY0FIRapkNALF2esgaLcls1n8S5E9b240FcU4m9MRmT7bKI87"/>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold truncate">Studio Kreatif Kopi</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">PIC: Maya Anggraini (Marketing Lead)</span>
+</div>
+</div>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full font-label-sm text-label-sm bg-surface-container-high text-on-surface-variant font-semibold flex-shrink-0">
+          UMKM / F&amp;B
+        </span>
+</div>
+<div class="grid grid-cols-2 gap-space-xs mb-3.5 p-space-sm rounded-lg bg-surface-container-low">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Total Transaksi</span>
+<span class="font-label-lg text-label-lg text-on-surface font-bold mt-0.5">Rp 12.800.000</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">3 Invoice Selesai</span>
+</div>
+<div class="flex flex-col justify-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Status Tagihan</span>
+<div class="flex items-center gap-1 mt-1 text-secondary font-semibold font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span>Semua Lunas</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Nol saldo tertunda</span>
+</div>
+</div>
+<div class="flex items-center gap-2 pt-1">
+<a class="flex-1 h-11 bg-secondary text-on-secondary rounded-xl font-label-md text-label-md flex items-center justify-center gap-1.5 active:scale-95 transition-all shadow-sm" href="https://wa.me/6281987654321?text=Halo%20Kak%20Maya%20dari%20Studio%20Kreatif%20Kopi">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+<span>WhatsApp</span>
+</a>
+<a aria-label="Telepon Maya Anggraini" class="w-11 h-11 bg-surface-container-high text-on-surface rounded-xl flex items-center justify-center active:scale-95 transition-all flex-shrink-0" href="tel:081987654321">
+<span class="material-symbols-outlined text-[20px]">call</span>
+</a>
+<button class="flex-1 h-11 bg-primary text-on-primary rounded-xl font-label-md text-label-md flex items-center justify-center gap-1.5 active:scale-95 transition-all shadow-sm">
+<span class="material-symbols-outlined text-[18px]">receipt_long</span>
+<span>Buat Invoice</span>
+</button>
+</div>
+</div>
+<div class="client-card bg-surface-container-lowest rounded-xl p-space-md shadow-sm transition-all duration-200 relative overflow-hidden" data-category="prospek" data-name="CV Maju Logistik Hendra Setiawan">
+<div class="flex items-start justify-between gap-space-sm mb-3">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="relative w-12 h-12 rounded-xl bg-surface-container-highest overflow-hidden flex-shrink-0 flex items-center justify-center">
+<img class="w-full h-full object-cover" data-alt="Portrait of Indonesian supply chain manager Hendra Setiawan in warehouse administrative control room clean corporate natural daylight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8U4YExEO8o5qm51uemSaxAlGKoJqGsay8DTZ56WQVzgZstJXl6vPBakifgplt1tW1g_RvL8g2134EGwoHHV9kaigB_X3anGmOFErdGKSxirs8E5fsrfR9FdvIqmQvPCLCYx80h5dEIeOOZidR-XP0cacD4a0tS8VBdcbMORje2R3D_Ji5tnhbTvUSUnZEvJBoUTD9jol4NwIIv3YNKlD5mgyPbrdLxeBQGybgJSeC5d68lw9EjbGS"/>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold truncate">CV Maju Logistik</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">PIC: Hendra Setiawan</span>
+</div>
+</div>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full font-label-sm text-label-sm bg-secondary-container text-on-secondary-fixed font-bold tracking-wide flex-shrink-0">
+          PROSPEK BARU
+        </span>
+</div>
+<div class="mb-3.5 p-space-sm rounded-lg bg-surface-container-low flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Penawaran Menunggu Konfirmasi</span>
+<span class="font-label-lg text-label-lg text-primary font-bold mt-0.5">Rp 8.500.000</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Estimasi Proposal #QUO-2025-019</span>
+</div>
+<div class="h-9 w-9 rounded-full bg-secondary-fixed-dim/40 flex items-center justify-center text-secondary flex-shrink-0">
+<span class="material-symbols-outlined text-[20px]">hourglass_top</span>
+</div>
+</div>
+<div class="flex items-center gap-2 pt-1">
+<a class="flex-1 h-11 bg-secondary text-on-secondary rounded-xl font-label-md text-label-md flex items-center justify-center gap-1.5 active:scale-95 transition-all shadow-sm" href="https://wa.me/6281777888999?text=Halo%20Pak%20Hendra%20dari%20CV%20Maju%20Logistik">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+<span>WhatsApp</span>
+</a>
+<a aria-label="Telepon Hendra Setiawan" class="w-11 h-11 bg-surface-container-high text-on-surface rounded-xl flex items-center justify-center active:scale-95 transition-all flex-shrink-0" href="tel:081777888999">
+<span class="material-symbols-outlined text-[20px]">call</span>
+</a>
+<button class="flex-1 h-11 bg-primary text-on-primary rounded-xl font-label-md text-label-md flex items-center justify-center gap-1.5 active:scale-95 transition-all shadow-sm">
+<span class="material-symbols-outlined text-[18px]">request_quote</span>
+<span>Buat Penawaran</span>
+</button>
+</div>
+</div>
+<div class="client-card bg-surface-container-lowest rounded-xl p-space-md shadow-sm transition-all duration-200 relative overflow-hidden" data-category="aktif" data-name="Urban Brand Agency Reza Pratama">
+<div class="absolute -right-6 -top-6 w-20 h-20 bg-error-container/40 rounded-full blur-xl pointer-events-none"></div>
+<div class="flex items-start justify-between gap-space-sm mb-3">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="relative w-12 h-12 rounded-xl bg-surface-container-highest overflow-hidden flex-shrink-0 flex items-center justify-center">
+<img class="w-full h-full object-cover" data-alt="Close up face of Indonesian creative agency art director Reza Pratama with stylish glasses in sleek modern architectural design studio" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCu23jMeuHbWdzN_Rlh16lWVMx51Ha_8aQt2L_vGqT2jxaGoxH5VVVIE5yDUGqciqYZIlVRgQLffAfIyZqHAO_fTRWw1XcF2Edc-b6RpoAv65--UkQT3klZa-TqCv5tftbISq7L_5mb58iCvEFgCtH-qUG8BpDqGJ7Ohf-BgnP261MClINaoMiBMOA2IC1hoUSfOgVsoQXFMHeUqiYth5KSgUP9jejZZDxQB1RvPs207jWBI9jZGoE4"/>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold truncate">Urban Brand Agency</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">PIC: Reza Pratama</span>
+</div>
+</div>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full font-label-sm text-label-sm bg-surface-container-high text-on-surface-variant font-semibold flex-shrink-0">
+          AGENSI DESAIN
+        </span>
+</div>
+<div class="mb-3.5 p-space-sm rounded-lg bg-error-container/30 flex items-center justify-between">
+<div class="flex flex-col">
+<div class="flex items-center gap-1 text-error font-bold font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">warning</span>
+<span>TAGIHAN JATUH TEMPO</span>
+</div>
+<span class="font-currency-card text-currency-card text-error font-extrabold mt-0.5">Rp 2.500.000</span>
+<span class="font-body-sm text-body-sm text-on-error-container">Invoice #INV-2025-011 terlambat 5 hari</span>
+</div>
+<div class="w-10 h-10 rounded-full bg-error text-on-error flex items-center justify-center flex-shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[20px]">priority_high</span>
+</div>
+</div>
+<div class="flex items-center gap-2 pt-1">
+<a class="flex-1 h-11 bg-error text-on-error rounded-xl font-label-md text-label-md flex items-center justify-center gap-1.5 active:scale-95 transition-all shadow-sm" href="https://wa.me/6281122334455?text=Halo%20Mas%20Reza%2C%20mengingatkan%20invoice%20Urban%20Brand%20Agency%20yang%20telah%20jatuh%20tempo">
+<span class="material-symbols-outlined text-[18px]">notifications_active</span>
+<span>Kirim Pengingat WA</span>
+</a>
+<a aria-label="Telepon Reza Pratama" class="w-11 h-11 bg-surface-container-high text-on-surface rounded-xl flex items-center justify-center active:scale-95 transition-all flex-shrink-0" href="tel:081122334455">
+<span class="material-symbols-outlined text-[20px]">call</span>
+</a>
+</div>
+</div>
+</div>
+<div class="hidden px-margin py-12 flex flex-col items-center justify-center text-center" id="empty-state">
+<div class="w-16 h-16 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface-variant mb-space-sm">
+<span class="material-symbols-outlined text-[32px]">person_search</span>
+</div>
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">Klien Tidak Ditemukan</span>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xs mt-1">Coba gunakan kata kunci lain atau periksa filter kategori yang Anda pilih.</p>
+<button class="mt-4 px-space-md py-2 bg-surface-container-high text-primary font-label-md text-label-md rounded-xl active:scale-95 transition-all" id="reset-filter-btn">
+      Reset Pencarian
+    </button>
+</div>
+<div class="fixed inset-0 z-50 bg-inverse-surface/40 backdrop-blur-sm hidden items-end sm:items-center justify-center transition-opacity" id="modal-backdrop">
+<div class="w-full sm:max-w-md bg-surface-container-lowest rounded-t-3xl sm:rounded-2xl p-space-lg shadow-2xl flex flex-col max-h-[90vh] overflow-y-auto">
+<div class="flex items-center justify-between pb-3">
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">Tambah Klien Baru</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Lengkapi info profil pembayaran klien</span>
+</div>
+<button class="w-9 h-9 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center" id="close-modal">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<div class="flex flex-col gap-3.5 mt-2">
+<div>
+<label class="block font-label-md text-label-md text-on-surface font-semibold mb-1">Nama Perusahaan / Bisnis</label>
+<input class="w-full h-11 px-3.5 bg-surface-container-low text-on-surface rounded-xl font-body-md text-body-md focus:bg-surface-container-lowest focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Contoh: PT Kreasi Solusi Bangsa" type="text"/>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface font-semibold mb-1">Nama PIC (Penanggung Jawab)</label>
+<input class="w-full h-11 px-3.5 bg-surface-container-low text-on-surface rounded-xl font-body-md text-body-md focus:bg-surface-container-lowest focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Contoh: Rian Hidayat" type="text"/>
+</div>
+<div class="grid grid-cols-2 gap-2">
+<div>
+<label class="block font-label-md text-label-md text-on-surface font-semibold mb-1">No. WhatsApp</label>
+<input class="w-full h-11 px-3.5 bg-surface-container-low text-on-surface rounded-xl font-body-md text-body-md focus:bg-surface-container-lowest focus:outline-none focus:ring-2 focus:ring-primary" placeholder="0812xxxxxxx" type="tel"/>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface font-semibold mb-1">Kategori</label>
+<select class="w-full h-11 px-3 bg-surface-container-low text-on-surface rounded-xl font-body-md text-body-md focus:bg-surface-container-lowest focus:outline-none">
+<option>Klien Aktif</option>
+<option>Klien VIP</option>
+<option>Prospek Baru</option>
+<option>UMKM / Personal</option>
+</select>
+</div>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface font-semibold mb-1">Email Tagihan (Opsional)</label>
+<input class="w-full h-11 px-3.5 bg-surface-container-low text-on-surface rounded-xl font-body-md text-body-md focus:bg-surface-container-lowest focus:outline-none" placeholder="billing@perusahaan.com" type="email"/>
+</div>
+<button class="mt-3 w-full h-12 bg-primary-container text-on-primary font-label-lg text-label-lg rounded-xl flex items-center justify-center gap-2 shadow-md active:scale-95 transition-all" id="save-client-btn">
+<span class="material-symbols-outlined text-[20px]">check</span>
+<span>Simpan Profil Klien</span>
+</button>
+</div>
+</div>
+</div>
+<div class="fixed bottom-24 left-1/2 -translate-x-1/2 z-50 bg-inverse-surface text-inverse-on-surface px-4 py-2.5 rounded-full shadow-lg font-label-md text-label-md flex items-center gap-2 pointer-events-none transition-all duration-300 opacity-0 translate-y-4" id="toast">
+<span class="material-symbols-outlined text-secondary-container text-[18px]">verified</span>
+<span id="toast-message">Aksi berhasil dilakukan</span>
+</div>
+<script>
+    (function () {
+      const searchInput = document.getElementById('client-search');
+      const clearBtn = document.getElementById('clear-search');
+      const cards = document.querySelectorAll('.client-card');
+      const emptyState = document.getElementById('empty-state');
+      const resetBtn = document.getElementById('reset-filter-btn');
+      const filterChips = document.querySelectorAll('.filter-chip');
+      const modalBackdrop = document.getElementById('modal-backdrop');
+      const btnTambahTop = document.getElementById('btn-tambah-top');
+      const closeModal = document.getElementById('close-modal');
+      const saveBtn = document.getElementById('save-client-btn');
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toast-message');
+
+      let currentFilter = 'all';
+
+      function showToast(text) {
+        if (!toast) return;
+        toastMsg.textContent = text;
+        toast.classList.remove('opacity-0', 'translate-y-4');
+        toast.classList.add('opacity-100', 'translate-y-0');
+        setTimeout(() => {
+          toast.classList.remove('opacity-100', 'translate-y-0');
+          toast.classList.add('opacity-0', 'translate-y-4');
+        }, 2200);
+      }
+
+      function filterClients() {
+        const query = (searchInput.value || '').toLowerCase().trim();
+        let visibleCount = 0;
+
+        cards.forEach(card => {
+          const cardCategories = (card.getAttribute('data-category') || '').toLowerCase();
+          const cardText = (card.getAttribute('data-name') || '').toLowerCase();
+
+          const matchesCategory = (currentFilter === 'all') || cardCategories.includes(currentFilter);
+          const matchesQuery = query === '' || cardText.includes(query);
+
+          if (matchesCategory && matchesQuery) {
+            card.style.display = 'block';
+            visibleCount++;
+          } else {
+            card.style.display = 'none';
+          }
+        });
+
+        if (visibleCount === 0) {
+          emptyState.classList.remove('hidden');
+        } else {
+          emptyState.classList.add('hidden');
+        }
+
+        if (query.length > 0) {
+          clearBtn.classList.remove('hidden');
+        } else {
+          clearBtn.classList.add('hidden');
+        }
+      }
+
+      searchInput.addEventListener('input', filterClients);
+
+      clearBtn.addEventListener('click', () => {
+        searchInput.value = '';
+        filterClients();
+        searchInput.focus();
+      });
+
+      filterChips.forEach(chip => {
+        chip.addEventListener('click', () => {
+          filterChips.forEach(c => {
+            c.classList.remove('bg-primary', 'text-on-primary', 'shadow-sm', 'active');
+            c.classList.add('bg-surface-container-high', 'text-on-surface-variant');
+          });
+
+          chip.classList.remove('bg-surface-container-high', 'text-on-surface-variant');
+          chip.classList.add('bg-primary', 'text-on-primary', 'shadow-sm', 'active');
+
+          currentFilter = chip.getAttribute('data-filter') || 'all';
+          filterClients();
+        });
+      });
+
+      resetBtn.addEventListener('click', () => {
+        searchInput.value = '';
+        currentFilter = 'all';
+        filterChips.forEach((c, idx) => {
+          if (idx === 0) {
+            c.classList.add('bg-primary', 'text-on-primary', 'shadow-sm', 'active');
+            c.classList.remove('bg-surface-container-high', 'text-on-surface-variant');
+          } else {
+            c.classList.remove('bg-primary', 'text-on-primary', 'shadow-sm', 'active');
+            c.classList.add('bg-surface-container-high', 'text-on-surface-variant');
+          }
+        });
+        filterClients();
+      });
+
+      function openModal() {
+        modalBackdrop.classList.remove('hidden');
+        modalBackdrop.classList.add('flex');
+      }
+
+      function hideModal() {
+        modalBackdrop.classList.remove('flex');
+        modalBackdrop.classList.add('hidden');
+      }
+
+      if (btnTambahTop) btnTambahTop.addEventListener('click', openModal);
+      if (closeModal) closeModal.addEventListener('click', hideModal);
+
+      modalBackdrop.addEventListener('click', (e) => {
+        if (e.target === modalBackdrop) hideModal();
+      });
+
+      if (saveBtn) {
+        saveBtn.addEventListener('click', () => {
+          hideModal();
+          showToast('Klien baru berhasil ditambahkan!');
+        });
+      }
+    })();
+  </script>
+</div></main><div class="fixed bottom-20 right-margin z-40 pb-safe pointer-events-auto"><a class="flex items-center gap-space-xs h-12 pl-space-md pr-space-lg rounded-full bg-primary-container text-on-primary font-label-lg text-label-lg shadow-[0_8px_24px_-4px_rgba(30,64,175,0.38)] active:scale-95 transition-all duration-150" data-path="buat-dokumen" href="#"><span class="material-symbols-outlined text-[22px]">add</span><span>Buat Dokumen</span></a></div><nav class="fixed bottom-0 inset-x-0 z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-4px_20px_rgba(11,28,48,0.06)]" data-active-classes="text-primary font-bold"><div class="flex justify-around items-center h-16 px-space-xs"><a class="flex flex-col items-center justify-center gap-0.5 w-16 h-12 text-on-surface-variant transition-colors" data-path="dashboard" href="#"><span class="material-symbols-outlined text-[24px]">dashboard</span><span class="font-label-sm text-label-sm">Beranda</span></a><a class="flex flex-col items-center justify-center gap-0.5 w-16 h-12 text-on-surface-variant transition-colors" data-path="invoices-dan-penawaran" href="#"><span class="material-symbols-outlined text-[24px]">receipt_long</span><span class="font-label-sm text-label-sm">Dokumen</span></a><a aria-current="page" class="flex flex-col items-center justify-center gap-0.5 w-16 h-12 transition-colors text-primary font-bold" data-path="klien" href="#"><span class="material-symbols-outlined text-[24px]">group</span><span class="font-label-sm text-label-sm">Klien</span></a><a class="flex flex-col items-center justify-center gap-0.5 w-16 h-12 text-on-surface-variant transition-colors" data-path="pengaturan" href="#"><span class="material-symbols-outlined text-[24px]">settings</span><span class="font-label-sm text-label-sm">Pengaturan</span></a></div></nav></body></html>
