@@ -4,6 +4,7 @@ import Icon from '../components/Icon.jsx'
 import BottomNav from '../components/BottomNav.jsx'
 import { useToast } from '../components/Toast.jsx'
 import DocumentCard, { byNewest, reminderText, waLink } from '../components/DocumentCard.jsx'
+import { useAuth } from '../store/AuthProvider.jsx'
 import { useData } from '../store/DataProvider.jsx'
 import { formatRupiah } from '../format.js'
 
@@ -49,7 +50,8 @@ export default function Dashboard() {
   const [period, setPeriod] = useState(periods[0])
   const [pickerOpen, setPickerOpen] = useState(false)
 
-  const { documents, findClient } = useData()
+  const { documents, findClient, profile } = useData()
+  const { user } = useAuth()
 
   const visibleDocs = useMemo(
     () => documents.filter((d) => filter === 'all' || d.type === filter).sort(byNewest).slice(0, 5),
@@ -106,7 +108,7 @@ export default function Dashboard() {
           <section className="flex flex-col gap-space-sm pt-space-xs">
             <div className="flex items-center justify-between">
               <div className="flex flex-col">
-                <h1 className="font-headline-lg text-headline-lg text-on-surface tracking-tight">Halo, Sarah Putri 👋</h1>
+                <h1 className="font-headline-lg text-headline-lg text-on-surface tracking-tight">Halo, {user?.name || profile.ownerName} 👋</h1>
                 <p className="font-body-sm text-body-sm text-on-surface-variant font-medium">Freelance UI/UX &amp; Web Developer</p>
               </div>
               <div className="relative">

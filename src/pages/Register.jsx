@@ -4,6 +4,7 @@ import Icon from '../components/Icon.jsx'
 import { useToast } from '../components/Toast.jsx'
 import useTimeouts from '../hooks/useTimeouts.js'
 import AuthHeader from '../components/AuthHeader.jsx'
+import { useAuth } from '../store/AuthProvider.jsx'
 
 const inputClass =
   'w-full h-12 rounded-xl bg-surface-container-low text-on-surface font-body-md text-body-md placeholder:text-outline focus:bg-surface-container-lowest focus:outline-none transition-colors'
@@ -47,14 +48,27 @@ function getStrength(val) {
   return strengthLevels[Math.max(score, 1)]
 }
 
-function IconInput({ icon, className = 'pr-3.5', ...props }) {
+const errorRing = 'shadow-[0_0_0_2px_#ba1a1a]'
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+function IconInput({ icon, error, className = 'pr-3.5', ...props }) {
   return (
     <div className="relative flex items-center">
       <div className="absolute left-3.5 flex items-center pointer-events-none text-on-surface-variant">
         <Icon name={icon} className="text-[20px]" />
       </div>
-      <input className={`${inputClass} pl-11 ${className}`} {...props} />
+      <input aria-invalid={Boolean(error)} className={`${inputClass} pl-11 ${className} ${error ? errorRing : ''}`} {...props} />
     </div>
+  )
+}
+
+function FieldError({ message }) {
+  if (!message) return null
+  return (
+    <p className="font-body-sm text-body-sm text-error flex items-center gap-1">
+      <Icon name="error" className="text-[15px]" />
+      {message}
+    </p>
   )
 }
 
@@ -62,28 +76,63 @@ function Required() {
   return <span className="text-error">*</span>
 }
 
+function validate(form, password, agreed) {
+  const errors = {}
+  const phone = form.phone.replace(/\D/g, '').replace(/^(62|0)/, '')
+  if (!form.name.trim()) errors.name = 'Nama lengkap wajib diisi.'
+  if (!form.email.trim()) errors.email = 'Email kerja wajib diisi.'
+  else if (!EMAIL_PATTERN.test(form.email.trim())) errors.email = 'Format email tidak valid.'
+  if (!phone) errors.phone = 'Nomor WhatsApp wajib diisi untuk verifikasi OTP.'
+  else if (!/^8\d{7,11}$/.test(phone)) errors.phone = 'Nomor WhatsApp tidak valid, contoh: 812 3456 7890.'
+  if (password.length < 8) errors.password = 'Kata sandi minimal 8 karakter.'
+  if (!agreed) errors.agreed = 'Silakan setujui Syarat Layanan & Kebijakan Privasi.'
+  return errors
+}
+
 export default function Register() {
   const navigate = useNavigate()
+  const { startSignup } = useAuth()
   const later = useTimeouts()
   const [toast, showToast] = useToast()
+  const [form, setForm] = useState({ name: '', business: '', email: '', phone: '' })
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
   const [agreed, setAgreed] = useState(false)
   const [status, setStatus] = useState('idle')
+  const [errors, setErrors] = useState({})
 
   const strength = getStrength(password)
 
+  const field = (key) => ({
+    value: form[key],
+    error: errors[key],
+    onChange: (e) => {
+      setForm((f) => ({ ...f, [key]: e.target.value }))
+      if (errors[key]) setErrors((er) => ({ ...er, [key]: undefined }))
+    },
+  })
+
   const handleSubmit = () => {
     if (status !== 'idle') return
-    if (!agreed) {
-      showToast('Silakan setujui Syarat Layanan & Kebijakan Privasi terlebih dahulu.', 'error')
+    const found = validate(form, password, agreed)
+    setErrors(found)
+    const firstKey = Object.keys(found)[0]
+    if (firstKey) {
+      document.getElementById(firstKey === 'agreed' ? 'termsCheck' : firstKey === 'phone' ? 'whatsapp' : firstKey)?.focus()
       return
     }
     setStatus('loading')
     later(() => {
+      const result = startSignup({ ...form, password })
+      if (!result.ok) {
+        setStatus('idle')
+        setErrors({ [result.field]: result.error })
+        document.getElementById(result.field)?.focus()
+        return
+      }
       setStatus('success')
-      later(() => navigate('/verifikasi-otp'), 800)
-    }, 1000)
+      later(() => navigate('/verifikasi-otp'), 700)
+    }, 900)
   }
 
   return (
@@ -131,7 +180,7 @@ export default function Register() {
             <div className="flex flex-col gap-space-sm">
               <button
                 className="w-full h-[50px] bg-surface-container-lowest hover:bg-surface-container-low transition-all duration-200 rounded-xl shadow-sm flex items-center justify-center gap-space-sm active:scale-[0.98]"
-                onClick={() => showToast('Menghubungkan ke Google...', 'sync')}
+                onClick={() => showToast('Daftar dengan Google belum tersedia. Silakan isi formulir.', 'info')}
                 type="button"
               >
                 <svg className="w-5 h-5" viewBox="0 0 24 24">
@@ -160,7 +209,8 @@ export default function Register() {
                   </span>
                   <span className="font-label-sm text-label-sm text-on-surface-variant">Sesuai KTP / Rekening</span>
                 </label>
-                <IconInput icon="person" id="name" placeholder="Contoh: Sarah Putri" type="text" autoComplete="name" />
+                <IconInput icon="person" id="name" placeholder="Contoh: Sarah Putri" type="text" autoComplete="name" {...field('name')} />
+                <FieldError message={errors.name} />
               </div>
 
               {/* Field: Business / Studio Name */}
@@ -173,7 +223,7 @@ export default function Register() {
                     Kop Invoice Otomatis
                   </span>
                 </div>
-                <IconInput icon="storefront" id="business" placeholder="Contoh: Sarah Design & Code Lab" type="text" autoComplete="organization" />
+                <IconInput icon="storefront" id="business" placeholder="Contoh: Sarah Design & Code Lab" type="text" autoComplete="organization" {...field('business')} />
               </div>
 
               {/* Field: Work Email */}
@@ -181,7 +231,8 @@ export default function Register() {
                 <label className="font-label-md text-label-md text-on-surface" htmlFor="email">
                   Email Kerja <Required />
                 </label>
-                <IconInput icon="alternate_email" id="email" placeholder="sarah@studiokarya.com" type="email" autoComplete="email" />
+                <IconInput icon="alternate_email" id="email" placeholder="sarah@studiokarya.com" type="email" autoComplete="email" {...field('email')} />
+                <FieldError message={errors.email} />
               </div>
 
               {/* Field: WhatsApp Number */}
@@ -194,8 +245,19 @@ export default function Register() {
                     <Icon name="chat" className="text-[18px] text-secondary" />
                     <span className="font-label-md text-label-md text-on-surface font-semibold">+62</span>
                   </div>
-                  <input className={`${inputClass} pl-24 pr-3.5`} id="whatsapp" placeholder="812 3456 7890" type="tel" autoComplete="tel-national" />
+                  <input
+                    aria-invalid={Boolean(errors.phone)}
+                    className={`${inputClass} pl-24 pr-3.5 ${errors.phone ? errorRing : ''}`}
+                    id="whatsapp"
+                    inputMode="tel"
+                    placeholder="812 3456 7890"
+                    type="tel"
+                    autoComplete="tel-national"
+                    value={form.phone}
+                    onChange={field('phone').onChange}
+                  />
                 </div>
+                <FieldError message={errors.phone} />
                 <p className="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1 mt-0.5">
                   <Icon name="info" className="text-[15px] text-secondary" />
                   Untuk pengiriman invoice instan &amp; rekap status pembayaran ke klien.
@@ -212,13 +274,17 @@ export default function Register() {
                     <Icon name="lock" className="text-[20px]" />
                   </div>
                   <input
-                    className={`${inputClass} pl-11 pr-12`}
+                    aria-invalid={Boolean(errors.password)}
+                    className={`${inputClass} pl-11 pr-12 ${errors.password ? errorRing : ''}`}
                     id="password"
                     placeholder="Minimal 8 karakter unik"
                     type={showPassword ? 'text' : 'password'}
                     autoComplete="new-password"
                     value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    onChange={(e) => {
+                      setPassword(e.target.value)
+                      if (errors.password) setErrors((er) => ({ ...er, password: undefined }))
+                    }}
                   />
                   <button
                     aria-label="Tampilkan sandi"
@@ -250,6 +316,7 @@ export default function Register() {
                     Kombinasikan huruf besar, angka, dan simbol.
                   </span>
                 </div>
+                <FieldError message={errors.password} />
               </div>
 
               {/* Agreement Checkbox */}
@@ -259,7 +326,10 @@ export default function Register() {
                   id="termsCheck"
                   type="checkbox"
                   checked={agreed}
-                  onChange={(e) => setAgreed(e.target.checked)}
+                  onChange={(e) => {
+                    setAgreed(e.target.checked)
+                    if (errors.agreed) setErrors((er) => ({ ...er, agreed: undefined }))
+                  }}
                 />
                 <span className="font-body-sm text-body-sm text-on-surface leading-snug">
                   Saya menyetujui <span className="text-primary-container font-semibold">Syarat Layanan</span> &amp;{' '}
@@ -267,6 +337,7 @@ export default function Register() {
                   &amp; transaksi.
                 </span>
               </label>
+              <FieldError message={errors.agreed} />
 
               {/* Main Action CTA Button */}
               <button

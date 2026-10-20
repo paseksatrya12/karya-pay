@@ -1,12 +1,15 @@
-import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useRef, useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import Icon from '../components/Icon.jsx'
 import { useToast } from '../components/Toast.jsx'
 import useTimeouts from '../hooks/useTimeouts.js'
 import AuthHeader from '../components/AuthHeader.jsx'
+import { DEMO_ACCOUNT, useAuth } from '../store/AuthProvider.jsx'
 
 const inputClass =
   'w-full h-12 pl-11 bg-surface-container-low rounded-xl font-body-md text-body-md text-on-surface placeholder:text-outline focus:bg-surface-container-lowest focus:outline-none focus:shadow-[0_0_0_2px_#1e40af] transition-all'
+const inputErrorClass = 'shadow-[0_0_0_2px_#ba1a1a] focus:shadow-[0_0_0_2px_#ba1a1a]'
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 const heroImage =
   '/images/photo-08.jpg'
@@ -40,21 +43,51 @@ const oauthProviders = [
 ]
 
 export default function Login() {
-  const navigate = useNavigate()
+  const location = useLocation()
+  const { checkCredentials, login } = useAuth()
   const later = useTimeouts()
   const [toast, showToast] = useToast()
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
   const [remember, setRemember] = useState(true)
   const [status, setStatus] = useState('idle')
+  const [error, setError] = useState(null)
+  const emailRef = useRef(null)
+  const passwordRef = useRef(null)
+  const notice = location.state?.notice
+
+  const fail = (field, message) => {
+    setError({ field, message })
+    const ref = field === 'password' ? passwordRef : emailRef
+    ref.current?.focus()
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault()
     if (status !== 'idle') return
+    if (!email.trim()) return fail('email', 'Masukkan alamat email Anda.')
+    if (!EMAIL_PATTERN.test(email.trim())) return fail('email', 'Format email tidak valid, contoh: nama@studio.id')
+    if (!password) return fail('password', 'Masukkan kata sandi Anda.')
+    setError(null)
     setStatus('loading')
     later(() => {
+      const result = checkCredentials(email, password)
+      if (!result.ok) {
+        setStatus('idle')
+        fail(result.field, result.error)
+        return
+      }
       setStatus('success')
-      later(() => navigate('/'), 800)
-    }, 1200)
+      // Sesi dibuat setelah animasi; router lalu mengarahkan ke halaman tujuan.
+      later(() => login(email, password, remember), 700)
+    }, 900)
+  }
+
+  const fillDemoAccount = () => {
+    setEmail(DEMO_ACCOUNT.email)
+    setPassword(DEMO_ACCOUNT.password)
+    setError(null)
   }
 
   return (
@@ -91,7 +124,19 @@ export default function Login() {
 
           {/* Main Login Card */}
           <div className="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-md">
-            <form className="flex flex-col gap-space-md" onSubmit={handleSubmit}>
+            {notice && !error && (
+              <div role="status" className="flex items-start gap-2 p-3 rounded-xl bg-secondary-container/50 text-on-secondary-fixed-variant">
+                <Icon name="check_circle" className="text-[18px] text-secondary mt-px" />
+                <p className="font-body-sm text-body-sm">{notice}</p>
+              </div>
+            )}
+            {error && (
+              <div role="alert" className="flex items-start gap-2 p-3 rounded-xl bg-error-container text-on-error-container">
+                <Icon name="error" className="text-[18px] mt-px" />
+                <p className="font-body-sm text-body-sm">{error.message}</p>
+              </div>
+            )}
+            <form className="flex flex-col gap-space-md" noValidate onSubmit={handleSubmit}>
               {/* Input: Email */}
               <div className="flex flex-col gap-1.5">
                 <label className="font-label-lg text-label-lg text-on-surface" htmlFor="emailInput">
@@ -102,14 +147,21 @@ export default function Login() {
                     <Icon name="mail" className="text-[20px]" />
                   </div>
                   <input
+                    ref={emailRef}
+                    aria-invalid={error?.field === 'email'}
                     autoComplete="email"
-                    className={`${inputClass} pr-4`}
+                    className={`${inputClass} pr-4 ${error?.field === 'email' ? inputErrorClass : ''}`}
                     id="emailInput"
                     inputMode="email"
                     name="email"
+                    onChange={(e) => {
+                      setEmail(e.target.value)
+                      if (error?.field === 'email') setError(null)
+                    }}
                     placeholder="freelancer@studio.id"
                     required
                     type="email"
+                    value={email}
                   />
                 </div>
               </div>
@@ -124,13 +176,20 @@ export default function Login() {
                     <Icon name="lock" className="text-[20px]" />
                   </div>
                   <input
+                    ref={passwordRef}
+                    aria-invalid={error?.field === 'password'}
                     autoComplete="current-password"
-                    className={`${inputClass} pr-12`}
+                    className={`${inputClass} pr-12 ${error?.field === 'password' ? inputErrorClass : ''}`}
                     id="passwordInput"
                     name="password"
+                    onChange={(e) => {
+                      setPassword(e.target.value)
+                      if (error?.field === 'password') setError(null)
+                    }}
                     placeholder="Masukkan kata sandi"
                     required
                     type={showPassword ? 'text' : 'password'}
+                    value={password}
                   />
                   <button
                     aria-label="Tampilkan atau sembunyikan kata sandi"
@@ -210,7 +269,7 @@ export default function Login() {
                 <button
                   key={name}
                   className="w-full h-12 px-4 rounded-xl bg-surface-container-low text-on-surface flex items-center justify-center gap-3 font-label-lg text-label-lg shadow-sm active:bg-surface-container active:scale-[0.99] transition-all"
-                  onClick={() => showToast(`Menghubungkan ke ${name}...`, 'sync')}
+                  onClick={() => showToast(`Masuk dengan ${name} belum tersedia. Gunakan email & kata sandi.`, 'info')}
                   type="button"
                 >
                   {logo}
@@ -239,6 +298,24 @@ export default function Login() {
             <Icon name="encrypted" className="text-[18px] text-secondary" />
             <span className="font-label-sm text-label-sm">Dilindungi enkripsi data perbankan 256-bit standar BI &amp; OJK</span>
           </div>
+
+          {/* Akun demo (belum ada server) */}
+          <button
+            className="mt-space-md w-full flex items-center gap-3 p-3 rounded-xl bg-surface-container-low text-left active:scale-[0.99] transition-transform"
+            onClick={fillDemoAccount}
+            type="button"
+          >
+            <div className="w-9 h-9 rounded-lg bg-surface-container-lowest text-primary flex items-center justify-center shadow-sm shrink-0">
+              <Icon name="key" className="text-[20px]" />
+            </div>
+            <div className="flex-1 min-w-0">
+              <span className="font-label-md text-label-md text-on-surface block">Coba dengan akun demo</span>
+              <span className="font-body-sm text-body-sm text-on-surface-variant block truncate">
+                {DEMO_ACCOUNT.email} · {DEMO_ACCOUNT.password}
+              </span>
+            </div>
+            <span className="font-label-md text-label-md text-primary-container shrink-0">Isi Otomatis</span>
+          </button>
         </div>
       </main>
       {toast}

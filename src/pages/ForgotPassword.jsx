@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Icon from '../components/Icon.jsx'
 import useTimeouts from '../hooks/useTimeouts.js'
+import { formatPhone } from '../store/AuthProvider.jsx'
 
 const tabBase =
   'flex-1 min-h-[48px] px-2 py-2 rounded-lg font-label-lg text-label-lg flex items-center justify-center gap-1.5 transition-all'
@@ -81,7 +82,7 @@ export default function ForgotPassword() {
     setStatus('loading')
     later(() => {
       setStatus('success')
-      if (mode === 'wa') later(() => navigate('/verifikasi-otp'), 1000)
+      if (mode === 'wa') later(() => navigate('/verifikasi-otp', { state: { phone: formatPhone(phone) } }), 1000)
       else later(() => setStatus('idle'), 3000)
     }, 900)
   }

@@ -11,6 +11,15 @@ npm run build    # hasil di dist/
 npm run preview
 ```
 
+## Login
+
+Semua halaman aplikasi wajib login. Akun demo: **demo@karyapay.id** / **karyapay123** (tombol "Isi Otomatis" di halaman login).
+
+- Daftar akun → verifikasi OTP WhatsApp → akun aktif & langsung masuk. Karena belum ada server, kode OTP ditampilkan di halaman sebagai "mode demo".
+- "Ingat Saya" menyimpan sesi di `localStorage`; jika tidak dicentang, sesi hilang saat tab ditutup.
+- Keluar lewat Pengaturan → bagian "Masuk sebagai".
+- Akun & sesi disimpan di browser (`src/store/AuthProvider.jsx`). Ini autentikasi demo, **bukan pengamanan sungguhan** — ganti dengan API server sebelum produksi. Atur ulang kata sandi dan login Google/GitHub juga membutuhkan server.
+
 ## Halaman
 
 | Route | Halaman |

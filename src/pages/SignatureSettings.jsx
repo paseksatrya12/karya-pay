@@ -4,6 +4,7 @@ import Icon from '../components/Icon.jsx'
 import BottomNav from '../components/BottomNav.jsx'
 import BottomSheet from '../components/BottomSheet.jsx'
 import { useToast } from '../components/Toast.jsx'
+import { useAuth } from '../store/AuthProvider.jsx'
 import { useData } from '../store/DataProvider.jsx'
 import { SIGNATURE_STORAGE_KEY, loadSignature } from '../store/templateSettings.js'
 
@@ -482,6 +483,8 @@ function QrPattern() {
 export default function SignatureSettings() {
   const [toast, showToast] = useToast(2500)
   const { profile, saveProfile, services, items } = useData()
+  const { user, logout } = useAuth()
+  const [logoutOpen, setLogoutOpen] = useState(false)
   const [info, setInfo] = useState(() => pickProfileFields(profile))
   const [bankSheet, setBankSheet] = useState(null)
   const [saved, setSaved] = useState(loadSignature)
@@ -1040,6 +1043,25 @@ export default function SignatureSettings() {
                 Perubahan profil otomatis diperbarui ke seluruh tautan invoice aktif.
               </p>
             </div>
+
+            {/* Akun */}
+            <section className="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex items-center gap-space-sm">
+              <div className="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary shrink-0">
+                <Icon name="account_circle" className="text-[24px]" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <span className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider block">Masuk sebagai</span>
+                <span className="font-label-lg text-label-lg text-on-surface block truncate">{user?.email}</span>
+              </div>
+              <button
+                type="button"
+                onClick={() => setLogoutOpen(true)}
+                className="h-10 px-3.5 rounded-xl bg-error-container/60 text-error font-label-md text-label-md flex items-center gap-1.5 active:scale-95 transition-transform shrink-0"
+              >
+                <Icon name="logout" className="text-[18px]" />
+                Keluar
+              </button>
+            </section>
           </div>
         </div>
       </main>
@@ -1054,6 +1076,31 @@ export default function SignatureSettings() {
         </Link>
       </div>
       <BottomNav />
+      <BottomSheet
+        open={logoutOpen}
+        onClose={() => setLogoutOpen(false)}
+        title="Keluar dari KaryaPay?"
+        subtitle="Data invoice & pengaturan tetap tersimpan di perangkat ini."
+        footer={
+          <div className="flex gap-2">
+            <button
+              type="button"
+              onClick={() => setLogoutOpen(false)}
+              className="flex-1 h-12 rounded-xl bg-surface-container text-on-surface font-label-lg text-label-lg"
+            >
+              Batal
+            </button>
+            <button
+              type="button"
+              onClick={() => logout('Anda telah keluar. Sampai jumpa lagi!')}
+              className="flex-1 h-12 rounded-xl bg-error text-on-error font-label-lg text-label-lg flex items-center justify-center gap-1.5"
+            >
+              <Icon name="logout" className="text-[20px]" />
+              Ya, Keluar
+            </button>
+          </div>
+        }
+      />
       {bankSheet && (
         <BankSheet
           key={bankSheet.id || 'new'}

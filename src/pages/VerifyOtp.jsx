@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import Icon from '../components/Icon.jsx'
 import { useToast } from '../components/Toast.jsx'
 import useTimeouts from '../hooks/useTimeouts.js'
+import { formatPhone, useAuth } from '../store/AuthProvider.jsx'
+import { useData } from '../store/DataProvider.jsx'
 
 const OTP_LENGTH = 6
 const RESEND_SECONDS = 48
@@ -79,10 +81,13 @@ function OtpBox({ value, focused, inputRef, index, onChange, onKeyDown, onPaste,
 
 export default function VerifyOtp() {
   const navigate = useNavigate()
+  const location = useLocation()
   const goBack = useGoBack('/login')
   const later = useTimeouts()
   const [toast, showToast] = useToast()
-  const [digits, setDigits] = useState(['8', '4', '2', '9', '', ''])
+  const { pendingSignup, checkSignupCode, verifySignup, resendSignupCode } = useAuth()
+  const { saveProfile } = useData()
+  const [digits, setDigits] = useState(Array(OTP_LENGTH).fill(''))
   const [focusedIndex, setFocusedIndex] = useState(-1)
   const [timeLeft, setTimeLeft] = useState(RESEND_SECONDS)
   const [status, setStatus] = useState('idle')
@@ -140,10 +145,13 @@ export default function VerifyOtp() {
     fillFrom(i, chars)
   }
 
+  const phoneLabel = pendingSignup ? formatPhone(pendingSignup.phone) : location.state?.phone || '+62 812-3456-7890'
+
   const handleResend = () => {
     setTimeLeft(RESEND_SECONDS)
     setDigits(Array(OTP_LENGTH).fill(''))
     focusInput(0)
+    resendSignupCode()
     showToast('Kode OTP baru dikirim ke WhatsApp Anda', 'chat')
   }
 
@@ -154,11 +162,35 @@ export default function VerifyOtp() {
       focusInput(digits.findIndex((d) => !d))
       return
     }
+    const code = digits.join('')
     setStatus('loading')
     later(() => {
+      if (pendingSignup) {
+        const check = checkSignupCode(code)
+        if (!check.ok) {
+          setStatus('idle')
+          setDigits(Array(OTP_LENGTH).fill(''))
+          focusInput(0)
+          showToast(check.error, 'error')
+          return
+        }
+      }
       setStatus('success')
-      later(() => navigate('/'), 800)
-    }, 1000)
+      later(() => {
+        if (!pendingSignup) {
+          navigate('/login', { replace: true, state: { notice: 'Verifikasi berhasil. Silakan masuk kembali ke akun Anda.' } })
+          return
+        }
+        // Data pendaftaran langsung dipakai sebagai kop dokumen.
+        saveProfile({
+          ownerName: pendingSignup.name,
+          ...(pendingSignup.business && { businessName: pendingSignup.business }),
+          email: pendingSignup.email,
+          phone: formatPhone(pendingSignup.phone),
+        })
+        verifySignup(code)
+      }, 700)
+    }, 900)
   }
 
   const canResend = timeLeft <= 0
@@ -197,7 +229,7 @@ export default function VerifyOtp() {
             {/* Target Phone Pill with Edit Link */}
             <div className="inline-flex items-center gap-2 mt-3 px-3.5 py-1.5 rounded-full bg-surface-container shadow-sm">
               <div className="w-2 h-2 rounded-full bg-secondary animate-pulse" />
-              <span className="font-headline-sm text-headline-sm text-on-surface font-bold tracking-tight">+62 812-3456-7890</span>
+              <span className="font-headline-sm text-headline-sm text-on-surface font-bold tracking-tight">{phoneLabel}</span>
               <button
                 className="ml-1 text-primary-container font-label-md text-label-md underline hover:text-primary transition-colors flex items-center gap-0.5"
                 onClick={goBack}
@@ -235,6 +267,19 @@ export default function VerifyOtp() {
                 <Icon name="touch_app" className="text-[14px]" /> Ketuk kotak untuk input kode
               </span>
             </div>
+            {pendingSignup && (
+              <button
+                className="mt-3 mx-auto flex items-center gap-2 px-3 py-2 rounded-xl bg-surface-container-low text-left active:scale-[0.98] transition-transform"
+                onClick={() => fillFrom(0, pendingSignup.code.split(''))}
+                type="button"
+              >
+                <Icon name="sms" className="text-[18px] text-secondary" />
+                <span className="font-body-sm text-body-sm text-on-surface-variant">
+                  Mode demo · kode WhatsApp Anda <strong className="text-on-surface tracking-widest">{pendingSignup.code}</strong>
+                </span>
+                <span className="font-label-md text-label-md text-primary-container">Isi</span>
+              </button>
+            )}
           </div>
 
           {/* WhatsApp Verified Tip Callout */}
