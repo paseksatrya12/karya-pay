@@ -11,6 +11,10 @@ npm run build    # hasil di dist/
 npm run preview
 ```
 
+## Go-live
+
+Panduan lengkap deploy ke server aaPanel ada di [`docs/GO-LIVE.md`](docs/GO-LIVE.md). Konfigurasi Nginx dan skrip deploy/rollback ada di [`deploy/`](deploy/).
+
 ## Login
 
 Semua halaman aplikasi wajib login. Akun demo: **demo@karyapay.id** / **karyapay123** (tombol "Isi Otomatis" di halaman login).
