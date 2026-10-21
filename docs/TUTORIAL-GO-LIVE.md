@@ -37,7 +37,7 @@ Ringkasan seluruh tahapan (termasuk backend nanti) ada di [GO-LIVE.md](GO-LIVE.m
 - [ ] E. Firewall
 - [ ] F. Install Nginx & Node.js
 - [ ] G. Buat situs di aaPanel
-- [ ] H. Hubungkan server ke GitHub (deploy key)
+- [ ] H. Clone repo dari GitHub
 - [ ] I. Deploy pertama
 - [ ] J. Arahkan situs ke rilis
 - [ ] K. Pasang aturan Nginx
@@ -254,46 +254,41 @@ Klik **Submit**. Situs muncul di daftar Website.
 
 ---
 
-## H. Hubungkan server ke GitHub (deploy key)
+## H. Clone repo dari GitHub
 
-Repo `paseksatrya12/karya-pay` bersifat **privat**, jadi server perlu kunci khusus yang **hanya bisa membaca** repo ini.
+Repo `paseksatrya12/karya-pay` bersifat **publik**, jadi server bisa langsung mengambil kode tanpa login GitHub.
 
-### H1. Buat kunci di server
 **[Server]**
 ```bash
-ssh-keygen -t ed25519 -f ~/.ssh/karyapay_deploy -N "" -C "aapanel-karyapay"
-cat ~/.ssh/karyapay_deploy.pub
-```
-Salin seluruh baris yang tampil (diawali `ssh-ed25519`).
-
-### H2. Daftarkan di GitHub
-**[GitHub]** buka `https://github.com/paseksatrya12/karya-pay` → **Settings** → **Deploy keys** → **Add deploy key**:
-- Title: `aaPanel produksi`
-- Key: tempel baris dari H1
-- **Allow write access: JANGAN dicentang**
-- Klik **Add key**
-
-### H3. Atur & uji koneksi
-**[Server]**
-```bash
-cat >> ~/.ssh/config <<'CFG'
-Host github.com
-  IdentityFile ~/.ssh/karyapay_deploy
-  IdentitiesOnly yes
-CFG
-chmod 600 ~/.ssh/config
-ssh -T git@github.com
-```
-Jika ditanya `Are you sure you want to continue connecting` → ketik `yes`.
-✅ Berhasil jika muncul: `Hi paseksatrya12/karya-pay! You've successfully authenticated, but GitHub does not provide shell access.`
-
-### H4. Clone repo
-**[Server]**
-```bash
-git clone git@github.com:paseksatrya12/karya-pay.git /www/wwwroot/karyapay/repo
+git clone https://github.com/paseksatrya12/karya-pay.git /www/wwwroot/karyapay/repo
 ls /www/wwwroot/karyapay/repo/deploy
 # deploy-frontend.sh  nginx  rollback-frontend.sh
 ```
+✅ Berhasil jika tiga nama di atas tampil. Skrip deploy nanti mengambil update dari alamat yang sama.
+
+> 🔒 **Karena repo publik, siapa pun bisa membaca isinya.** Jangan pernah meng-commit password, token WhatsApp, kunci API, atau file `.env`. Semua rahasia itu nanti (Fase 2) hanya disimpan di server, di `/www/wwwroot/karyapay/shared/.env`.
+
+<details>
+<summary><strong>Jika suatu saat repo dijadikan privat lagi</strong> — pakai deploy key</summary>
+
+1. **[Server]** buat kunci baca-saja:
+   ```bash
+   ssh-keygen -t ed25519 -f ~/.ssh/karyapay_deploy -N "" -C "aapanel-karyapay"
+   cat ~/.ssh/karyapay_deploy.pub
+   ```
+2. **[GitHub]** repo → **Settings** → **Deploy keys** → **Add deploy key** → tempel kunci, **jangan** centang *Allow write access* → **Add key**.
+3. **[Server]** pakai kunci itu & ganti alamat repo ke SSH:
+   ```bash
+   cat >> ~/.ssh/config <<'CFG'
+   Host github.com
+     IdentityFile ~/.ssh/karyapay_deploy
+     IdentitiesOnly yes
+   CFG
+   chmod 600 ~/.ssh/config
+   ssh -T git@github.com    # "Hi paseksatrya12/karya-pay! You've successfully authenticated…"
+   git -C /www/wwwroot/karyapay/repo remote set-url origin git@github.com:paseksatrya12/karya-pay.git
+   ```
+</details>
 
 ---
 
@@ -469,8 +464,8 @@ Ulangi **langkah K** (Cara 2) setelah `deploy-karyapay`.
 | Masih ditanya password setelah pasang key | C4 | Kunci salah tempel/terpotong; cek `cat ~/.ssh/authorized_keys`, harus satu baris utuh |
 | Tidak bisa buka aaPanel setelah ganti port | D | Port baru belum dibuka di firewall (E1/E2). Masuk SSH → `bt` → ganti port kembali |
 | `node: command not found` / `Node.js 20.19+ … diperlukan` | F2, I | Ulangi F2; tutup & buka lagi terminal |
-| `Permission denied (publickey)` saat `ssh -T git@github.com` | H3 | Deploy key belum ditambahkan di GitHub, atau `~/.ssh/config` salah ketik |
-| `Repository not found` saat clone | H4 | Deploy key ditambahkan di repo lain; pastikan di `paseksatrya12/karya-pay` |
+| `Repository not found` / diminta username GitHub saat clone atau deploy | H, I | Repo sudah tidak publik, atau alamat salah ketik. Cek `https://github.com/paseksatrya12/karya-pay` di browser dalam mode incognito; jika privat, ikuti bagian *deploy key* di langkah H |
+| `Could not resolve host: github.com` | H, I | Server tidak bisa mengakses internet/DNS: `ping -c2 github.com`; cek DNS server di `/etc/resolv.conf` |
 | `npm ci` gagal / `ENOSPC` | I | Disk penuh: `df -h`. Hapus file besar tak terpakai |
 | Proses build terhenti `Killed` | I | RAM habis → pastikan swap aktif (C3) |
 | Masih muncul halaman bawaan aaPanel ("Congratulations…") | J | Site directory belum diarahkan ke `/www/wwwroot/karyapay/current` |

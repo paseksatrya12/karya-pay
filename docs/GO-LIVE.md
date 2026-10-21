@@ -107,11 +107,11 @@ Website → **Add site**:
 - FTP: tidak · Database: tidak · PHP version: **Pure static**
 
 ### 1.2 Clone repo & deploy pertama (via SSH)
-Repo **publik**:
+Repo saat ini **publik**, cukup:
 ```bash
 git clone https://github.com/paseksatrya12/karya-pay.git /www/wwwroot/karyapay/repo
 ```
-Repo **privat** — pakai *deploy key* (hanya-baca):
+Jika suatu saat repo dijadikan **privat** — pakai *deploy key* (hanya-baca):
 ```bash
 ssh-keygen -t ed25519 -f ~/.ssh/karyapay_deploy -N ""
 cat ~/.ssh/karyapay_deploy.pub
@@ -212,6 +212,8 @@ php artisan storage:link
 ```
 
 ### 2.5 `.env` produksi (inti)
+Repo GitHub bersifat **publik**: file `.env` hanya dibuat di server (`shared/.env`) dan sudah diabaikan oleh `.gitignore`. Di repo cukup ada `backend/.env.example` tanpa nilai rahasia.
+
 ```dotenv
 APP_ENV=production
 APP_DEBUG=false
