@@ -391,6 +391,13 @@ Sertifikat berlaku 90 hari dan **diperpanjang otomatis** oleh aaPanel.
 
 ## M. Uji setelah live
 
+### M0. Cek otomatis (paling cepat)
+**[Laptop]** (Git Bash, dari folder proyek) atau **[Server]**:
+```bash
+bash deploy/check-live.sh https://app.domainanda.com
+```
+Skrip memeriksa HTTPS, akses langsung ke halaman dalam (`/dokumen`, `/invoice/.../pdf`), cache, kompresi, dan header keamanan. Setiap baris ✗ disertai petunjuk perbaikannya. Jalankan lagi setelah setiap perubahan konfigurasi.
+
 ### M1. Di browser (laptop & HP)
 - [ ] `https://app.domainanda.com` → diarahkan ke halaman **Login**
 - [ ] Klik **Isi Otomatis** (akun demo) → **Masuk** → Dashboard tampil
@@ -472,6 +479,7 @@ Ulangi **langkah K** (Cara 2) setelah `deploy-karyapay`.
 | 404 saat refresh `/dokumen` | K | Aturan Nginx belum terpasang; ulangi K dan pastikan `nginx -t` sukses |
 | SSL: `Verification failed` | L | DNS belum mengarah ke server (B2), port 80 tertutup, atau awan Cloudflare oranye (set abu-abu dulu) |
 | `ERR_TOO_MANY_REDIRECTS` | L | Cloudflare mode *Flexible* → ganti ke **Full (strict)** |
+| `http://` tidak pindah ke `https://` padahal SSL aktif (situs di belakang Cloudflare) | L | Cloudflare → SSL/TLS → **Full (strict)**, lalu Edge Certificates → **Always Use HTTPS: On** |
 | Halaman putih setelah update | N1 | Tekan Ctrl+F5; jika tetap, cek M2 (index.html harus no-cache). Darurat: `rollback-karyapay` |
 | Tampilan lama setelah `deploy-karyapay` | N1 | Pastikan `git push` sudah sampai GitHub; cek `cat /www/wwwroot/karyapay/current/REVISION` = commit terbaru |
 
