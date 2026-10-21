@@ -392,10 +392,17 @@ Sertifikat berlaku 90 hari dan **diperpanjang otomatis** oleh aaPanel.
 ## M. Uji setelah live
 
 ### M0. Cek otomatis (paling cepat)
-**[Laptop]** (Git Bash, dari folder proyek) atau **[Server]**:
+**[Server]** — perbarui repo dulu (skrip ikut terambil dari GitHub), lalu jalankan dengan path lengkap:
 ```bash
+deploy-karyapay
+bash /www/wwwroot/karyapay/repo/deploy/check-live.sh https://app.domainanda.com
+```
+**[Laptop]** — buka Git Bash dan masuk ke folder proyek dulu:
+```bash
+cd "/c/Users/UIB - IT/Documents/Project Tutorial/karya-pay"
 bash deploy/check-live.sh https://app.domainanda.com
 ```
+> Pesan `deploy/check-live.sh: No such file or directory` berarti Anda tidak sedang berada di folder repo/proyek — pakai path lengkap seperti di atas.
 Skrip memeriksa HTTPS, akses langsung ke halaman dalam (`/dokumen`, `/invoice/.../pdf`), cache, kompresi, dan header keamanan. Setiap baris ✗ disertai petunjuk perbaikannya. Jalankan lagi setelah setiap perubahan konfigurasi.
 
 ### M1. Di browser (laptop & HP)
