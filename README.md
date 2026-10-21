@@ -13,7 +13,7 @@ npm run preview
 
 ## Go-live
 
-Panduan lengkap deploy ke server aaPanel ada di [`docs/GO-LIVE.md`](docs/GO-LIVE.md). Konfigurasi Nginx dan skrip deploy/rollback ada di [`deploy/`](deploy/).
+Ringkasan tahapan deploy ke server aaPanel ada di [`docs/GO-LIVE.md`](docs/GO-LIVE.md); tutorial langkah demi langkah (persiapan server sampai frontend live) di [`docs/TUTORIAL-GO-LIVE.md`](docs/TUTORIAL-GO-LIVE.md). Konfigurasi Nginx dan skrip deploy/rollback ada di [`deploy/`](deploy/).
 
 ## Login
 
