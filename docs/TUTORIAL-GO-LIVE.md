@@ -461,6 +461,8 @@ Rollback instan; kode di GitHub tidak berubah. Perbaiki bug, push, lalu `deploy-
 
 ### N3. Aturan Nginx di repo berubah?
 Ulangi **langkah K** (Cara 2) setelah `deploy-karyapay`.
+Jika situs memakai **Cloudflare**, lanjutkan dengan Cloudflare → **Caching → Configuration → Purge Everything**, karena Cloudflare menyimpan salinan aset beserta header lamanya.
+(Deploy biasa **tidak** perlu purge: nama file aset selalu berubah setiap build.)
 
 ### N4. Perawatan ringan bulanan
 - **[aaPanel]** update panel bila ada versi baru
@@ -487,6 +489,7 @@ Ulangi **langkah K** (Cara 2) setelah `deploy-karyapay`.
 | SSL: `Verification failed` | L | DNS belum mengarah ke server (B2), port 80 tertutup, atau awan Cloudflare oranye (set abu-abu dulu) |
 | `ERR_TOO_MANY_REDIRECTS` | L | Cloudflare mode *Flexible* → ganti ke **Full (strict)** |
 | `http://` tidak pindah ke `https://` padahal SSL aktif (situs di belakang Cloudflare) | L | Cloudflare → SSL/TLS → **Full (strict)**, lalu Edge Certificates → **Always Use HTTPS: On** |
+| `check-live.sh`: aset `max-age=43200` padahal aturan Nginx sudah aktif, kadang lolos kadang tidak | K, M | Cloudflare menyajikan salinan lama (`cf-cache-status: HIT`). Cloudflare → Caching → **Purge Everything** |
 | Halaman putih setelah update | N1 | Tekan Ctrl+F5; jika tetap, cek M2 (index.html harus no-cache). Darurat: `rollback-karyapay` |
 | Tampilan lama setelah `deploy-karyapay` | N1 | Pastikan `git push` sudah sampai GitHub; cek `cat /www/wwwroot/karyapay/current/REVISION` = commit terbaru |
 

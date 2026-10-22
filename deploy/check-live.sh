@@ -39,8 +39,12 @@ esac
 asset="$(curl -s "$URL/" | grep -o '/assets/[^"]*\.js' | head -1)"
 if [ -n "$asset" ]; then
   cache="$(header "$URL$asset" cache-control)"
-  case "$cache" in
-    *immutable*) pass "Aset di-cache 1 tahun ($asset)" ;;
+  # Query acak memaksa CDN (Cloudflare) mengambil langsung dari server, untuk membedakan
+  # aturan Nginx yang belum aktif dengan salinan lama di cache CDN.
+  origin_cache="$(header "$URL$asset?nocache=$RANDOM$RANDOM" cache-control)"
+  case "$cache|$origin_cache" in
+    *immutable*\|*) pass "Aset di-cache 1 tahun ($asset)" ;;
+    *\|*immutable*) fail "Aset $asset: CDN masih menyajikan header lama ('$cache')" "Server sudah benar. Cloudflare → Caching → Configuration → Purge Everything" ;;
     *) fail "Aset $asset: Cache-Control '${cache:-kosong}'" "Aturan Nginx (langkah K) belum aktif" ;;
   esac
   enc="$(curl -sI -H 'Accept-Encoding: gzip, br' "$URL$asset" | tr -d '\r' | grep -i '^content-encoding:' | cut -d' ' -f2)"
